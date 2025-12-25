@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  email       String        @unique
+  phone       String
+  password    String
+  googleId    String?       // For Google Sign-In users
+  role        String        @default("USER") // USER, ADMIN, OPS, SUPPORT
+  fcmToken    String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  membership  Membership?
+  payments    Payment[]
+  chatHistory ChatMessage[]
+}
+
+model Payment {
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String     @db.ObjectId
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  membershipId     String     @db.ObjectId
+  membership       Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  amount           Float
+  method           String?    // UPI, CARD, NETBANKING, CASH
+  gatewayReference String?
+  status           String     @default("CREATED") // CREATED, SUCCESS, FAILED
+  notes            String?
+  createdAt        DateTime   @default(now())
+}
+
+model PlanConfig {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  planType       String        @unique // "1Y" or "3Y"
+  name           String        // "1-Year Membership"
+  description    String?
+  days           Int           // 6 or 18
+  price          Float         // Admin can update
+  isActive       Boolean       @default(true)
+  destinationIds String[]      @db.ObjectId
+  destinations   Destination[] @relation(fields: [destinationIds], references: [id])
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model Membership {
+  id                   String        @id @default(auto()) @map("_id") @db.ObjectId
+  membershipId         String?       @unique // Format: TT-2024-00001
+  userId               String        @unique @db.ObjectId
+  user                 User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planType             String        // "1Y", "3Y", or "5Y"
+  state                String?       // User's state (from TerraTrek form)
+  startDate            DateTime?
+  endDate              DateTime?
+  totalDays            Int
+  usedDays             Int           @default(0)
+  customDaysAdded      Int           @default(0)
+  customDestinationIds String[]      @db.ObjectId
+  customDestinations   Destination[] @relation(fields: [customDestinationIds], references: [id])
+  status               String        @default("PENDING") // NONE, PENDING, ACTIVE, EXPIRED
+  paymentStatus        String        @default("UNPAID") // UNPAID, PAID, FAILED
+  paymentAmount        Float?
+  activatedAt          DateTime?
+  payments             Payment[]
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+}
+
+// Counter for generating sequential membership IDs
+model MembershipCounter {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  year    Int    @unique
+  counter Int    @default(0)
+}
+
+model Destination {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  description    String?
+  durationDays   Int
+  bestMonths     String       // JSON array as string e.g. '["March", "April", "May"]'
+  difficulty     String       // easy, moderate, difficult
+  status         String       // available, not_available, coming_soon
+  imageUrl       String?
+  planConfigIds  String[]     @db.ObjectId
+  planConfigs    PlanConfig[] @relation(fields: [planConfigIds], references: [id])
+  membershipIds  String[]     @db.ObjectId
+  memberships    Membership[] @relation(fields: [membershipIds], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([status])
+}
+
+model Brochure {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  url       String
+  createdAt DateTime @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String   // "user" or "assistant"
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}

@@ -1,0 +1,418 @@
+
+> traveltrek-backend@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 23:15:00 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+🚀 TravelTrek API running on http://localhost:3000
+📊 Health check: http://localhost:3000/api/health
+Get destinations error: PrismaClientInitializationError: 
+Invalid `prisma.destination.findMany()` invocation in
+/Users/apple/Documents/Traveltrek/backend/src/controllers/destinationController.ts:6:55
+
+  3 
+  4 export const getAllDestinations = async (req: Request, res: Response) => {
+  5     try {
+→ 6         const destinations = await prisma.destination.findMany(
+Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: no record found for Query { name: Name("_mongodb._tcp.cluster0.2yrrglk.mongodb.net.local."), query_type: SRV, query_class: IN }, labels: {})
+    at $n.handleRequestError (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at l (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at getAllDestinations (/Users/apple/Documents/Traveltrek/backend/src/controllers/destinationController.ts:6:30) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}
+Get destinations error: PrismaClientInitializationError: 
+Invalid `prisma.destination.findMany()` invocation in
+/Users/apple/Documents/Traveltrek/backend/src/controllers/destinationController.ts:6:55
+
+  3 
+  4 export const getAllDestinations = async (req: Request, res: Response) => {
+  5     try {
+→ 6         const destinations = await prisma.destination.findMany(
+Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: no record found for Query { name: Name("_mongodb._tcp.cluster0.2yrrglk.mongodb.net.local."), query_type: SRV, query_class: IN }, labels: {})
+    at $n.handleRequestError (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at l (/Users/apple/Documents/Traveltrek/backend/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at getAllDestinations (/Users/apple/Documents/T[INFO] 23:59:24 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+🚀 TravelTrek API running on http://localhost:3000
+📊 Health check: http://localhost:3000/api/health
+🚀 Starting onboarding for user: shanu@gmail.com
+✅ Default membership created
+Email send error: {
+  statusCode: 403,
+  name: 'validation_error',
+  message: 'You can only send testing emails to your own email address (vishalverma4942@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.'
+}
+❌ Welcome email failed
+WhatsApp service error: RestException [Error]: Authentication Error - invalid username
+    at success (/Users/apple/Documents/Traveltrek/backend/node_modules/twilio/lib/base/Version.js:79:23)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at sendWhatsAppMessage (/Users/apple/Documents/Traveltrek/backend/src/services/whatsappService.ts:24:25)
+    at triggerOnboarding (/Users/apple/Documents/Traveltrek/backend/src/services/onboardingService.ts:29:30) {
+  status: 401,
+  code: 20003,
+  moreInfo: 'https://www.twilio.com/docs/errors/20003',
+  details: undefined
+}
+❌ WhatsApp message failed
+🔔 No FCM token, skipping push notification
+⚠️ Push notification skipped (no token)
+🎉 Onboarding completed for user: shanu@gmail.com
+[INFO] 00:08:11 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:08:13 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:08:51 Restarting: /Users/apple/Documents/Traveltrek/backend/src/routes/membershipRoutes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:08:53 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:23:35 Restarting: /Users/apple/Documents/Traveltrek/backend/src/services/aiService.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:23:37 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:23:57 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:23:59 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:24:38 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:24:40 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:29:59 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:30:01 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:34:19 Restarting: /Users/apple/Documents/Traveltrek/backend/src/index.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-6152787481496373.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+kend/src/index.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [asError: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-862172800308667.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-862172800308667.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:114:20)
+[ERROR] 00:23:59 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:24:38 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:114:20)
+[ERROR] 00:24:40 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:29:59 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInClust[ERROR] 00:30:01 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:34:19 Restarting: /Users/apple/Documents/Traveltrek/backend/src/index.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-1472654727131415.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+on.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3483176287311254.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3483176287311254.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+n EADDRINUSE: address already in use :::3000
+[INFO] 00:34:19 Restarting: /Users/apple/Documents/Traveltrek/backend/src/index.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-35367744357889186.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-35367744357889186.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+00gn/T/ts-node-dev-hook-27799770111233024.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-27799770111233024.js:114:20)
+[ERROR] 00:30:01 Error: listen EADDRIError: listen EADDRINUSE: address alr[INFO] 00:34:19 Restarting: /Users/apple/Documents/Traveltrek/backend/src/index.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-27799770111233024.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-27799770111233024.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDError: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-8807855367810162.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-8807855367810162.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:114:20)
+[ERROR] 00:23:37 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:23:57 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:114:20)
+[ERROR] 00:23:59 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:24:38 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:114:20)
+[ERROR] 00:24:40 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:29:59 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:114:20)
+[ERROR] 00:30:01 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:34:19 Restarting: /Users/apple/Documents/Traveltrek/backend/src/index.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:71:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-3366007834669458.js:114:20)
+[ERROR] 00:34:21 Error: listen EADDRINUSE: address already in use :::3000
+rt.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 23:59:28 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:08:11 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 00:08:13 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:08:51 Restarting: /Users/apple/Documents/Traveltrek/backend/src/routes/membershipRoutes.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 00:08:53 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:23:35 Restarting: /Users/apple/Documents/Traveltrek/backend/src/services/aiService.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 00:23:37 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:23:57 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 00:23:59 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:24:38 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/chatController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 00:24:40 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:29:59 Restarting: /Users/apple/Documents/Traveltrek/backend/src/controllers/membershipController.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1908:16)
+    at listenInCluster (node:net:1965:12)
+    at Server.listen (node:net:2067:7)
+    at Function.listen (/Users/apple/Documents/Traveltrek/backend/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/apple/Documents/Traveltrek/backend/src/index.ts:69:5)
+    at Module._compile (node:internal/modules/cjs/loader:1529:14)
+    at Module._compile (/Users/apple/Documents/Traveltrek/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1613:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/kn/yltqh4ds4v10_64v94jk84rh0000gn/T/ts-node-dev-hook-7191848069009557.js:114:20)
+[ERROR] 00:30:01 Error: listen EADDRINUSE: address already in use :::3000
+[INFO] 00:34:19 Restarting: /Users/apple/Documents/Traveltrek/backend/src/index.ts has been modified
+🚀 TravelTrek API running on http://localhost:3000
+📊 Health check: http://localhost:3000/api/health
