@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3001';
 
 export const sendMembershipIdEmail = async (
   email: string,
@@ -29,7 +30,7 @@ export const sendMembershipIdEmail = async (
                     <p>You can now log in to your account using your Membership ID and the password you set during enrollment.</p>
                     
                     <div style="text-align: center; margin-top: 30px;">
-                        <a href="http://localhost:3001/member-login" style="background-color: #667EEA; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Login to Dashboard</a>
+                        <a href="${FRONTEND_URL}/member-login" style="background-color: #667EEA; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Login to Dashboard</a>
                     </div>
                     
                     <p style="margin-top: 40px; font-size: 12px; color: #a0aec0; text-align: center;">

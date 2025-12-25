@@ -20,6 +20,13 @@ async function main() {
             price: 40000,
             isActive: true,
         },
+        {
+            planType: '5Y',
+            name: '5-Year Membership',
+            days: 30,
+            price: 60000,
+            isActive: true,
+        },
     ];
 
     for (const plan of plans) {
