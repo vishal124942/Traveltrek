@@ -68,11 +68,6 @@ export default function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
-                        {isLoggedIn && (
-                            <Link href="/chat" className="text-sm text-[#718096] hover:text-[#667EEA] transition-colors font-medium">
-                                AI Chat
-                            </Link>
-                        )}
                     </div>
 
                     {/* CTA */}
@@ -143,15 +138,6 @@ export default function Navbar() {
                             {link.label}
                         </Link>
                     ))}
-                    {isLoggedIn && (
-                        <Link
-                            href="/chat"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-[#1A202C] font-medium py-3 border-b border-gray-100 hover:text-[#667EEA] transition-colors"
-                        >
-                            AI Chat
-                        </Link>
-                    )}
                 </div>
 
                 {/* CTA Buttons */}
@@ -183,7 +169,7 @@ export default function Navbar() {
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
         </>
     );
 }
