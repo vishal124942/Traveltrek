@@ -30,7 +30,7 @@ export default function DashboardPage() {
         async function fetchData() {
             const token = api.getToken();
             if (!token) {
-                router.push('/login');
+                router.push('/member-login');
                 return;
             }
 
@@ -40,19 +40,22 @@ export default function DashboardPage() {
                     api.getMembership(),
                 ]);
 
-                if (profileRes.success && profileRes.data?.user) {
-                    setUser(profileRes.data.user as User);
+                // Extract user from response - backend returns { user: {...} }
+                const profileData = profileRes.data as { user?: User } | undefined;
+                if (profileRes.success && profileData?.user) {
+                    setUser(profileData.user);
                 } else {
-                    router.push('/login');
+                    router.push('/member-login');
                     return;
                 }
 
-                // Backend returns { membership: {...} } or { membership: null }
-                if (membershipRes.success && membershipRes.data?.membership) {
-                    setMembership(membershipRes.data.membership as Membership);
+                // Extract membership from response - backend returns { membership: {...} }
+                const membershipData = membershipRes.data as { membership?: Membership } | undefined;
+                if (membershipRes.success && membershipData?.membership) {
+                    setMembership(membershipData.membership);
                 }
             } catch {
-                router.push('/login');
+                router.push('/member-login');
             } finally {
                 setLoading(false);
             }
