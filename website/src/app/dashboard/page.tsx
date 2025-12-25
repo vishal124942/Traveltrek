@@ -47,8 +47,9 @@ export default function DashboardPage() {
                     return;
                 }
 
-                if (membershipRes.success && membershipRes.data) {
-                    setMembership(membershipRes.data as Membership);
+                // Backend returns { membership: {...} } or { membership: null }
+                if (membershipRes.success && membershipRes.data?.membership) {
+                    setMembership(membershipRes.data.membership as Membership);
                 }
             } catch {
                 router.push('/login');
@@ -106,9 +107,9 @@ export default function DashboardPage() {
                                 {membership ? planLabels[membership.planType] || membership.planType : 'No Active Membership'}
                             </h2>
                         </div>
-                        <span className={`px-4 py-1 rounded-full text-sm font-semibold ${membership?.status === 'active'
-                                ? 'bg-[var(--success)] text-white'
-                                : 'bg-[var(--warning)] text-white'
+                        <span className={`px-4 py-1 rounded-full text-sm font-semibold ${membership?.status?.toLowerCase() === 'active'
+                            ? 'bg-[var(--success)] text-white'
+                            : 'bg-[var(--warning)] text-white'
                             }`}>
                             {membership?.status?.toUpperCase() || 'INACTIVE'}
                         </span>
