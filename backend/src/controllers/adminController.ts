@@ -254,15 +254,24 @@ export const updatePlanConfig = async (req: AuthRequest, res: Response) => {
 // Update membership (Custom overrides)
 export const updateMembership = async (req: AuthRequest, res: Response) => {
     try {
-        const { id } = req.params;
+        const { id } = req.params; // This is the USER id
         const { customDaysAdded, customDestinationIds } = req.body;
+
+        // First find the membership by userId
+        const existingMembership = await prisma.membership.findUnique({
+            where: { userId: id }
+        });
+
+        if (!existingMembership) {
+            return res.status(404).json({ error: 'Membership not found for this user' });
+        }
 
         const updateData: any = {};
         if (customDaysAdded !== undefined) updateData.customDaysAdded = customDaysAdded;
         if (customDestinationIds !== undefined) updateData.customDestinationIds = customDestinationIds;
 
         const membership = await prisma.membership.update({
-            where: { id },
+            where: { id: existingMembership.id },
             data: updateData,
             include: { user: true, customDestinations: true }
         });
