@@ -129,8 +129,8 @@ export const memberLogin = async (req: Request, res: Response) => {
     try {
         const { membershipId, password } = req.body;
 
-        if (!membershipId || !password) {
-            return res.status(400).json({ error: 'Membership ID and password are required' });
+        if (!membershipId) {
+            return res.status(400).json({ error: 'Membership ID is required' });
         }
 
         // Find membership by membershipId
@@ -140,21 +140,41 @@ export const memberLogin = async (req: Request, res: Response) => {
         });
 
         if (!membership || !membership.user) {
-            return res.status(401).json({ error: 'Invalid Membership ID or password' });
+            return res.status(401).json({ error: 'Invalid Membership ID' });
         }
 
         // Check if membership is active
         if (membership.status !== 'ACTIVE') {
             return res.status(401).json({
-                error: 'Membership is not active',
+                error: 'Membership is not active yet. Please wait for admin approval.',
                 status: membership.status
             });
+        }
+
+        // Check if user has set their password yet
+        if (!membership.user.passwordSet) {
+            // First time login - need to set password
+            return res.json({
+                needsPasswordSetup: true,
+                message: 'Please set your password to continue',
+                email: membership.user.email,
+                membershipId: membership.membershipId
+            });
+        }
+
+        // Password is set - validate it
+        if (!password) {
+            return res.status(400).json({ error: 'Password is required' });
+        }
+
+        if (!membership.user.password) {
+            return res.status(500).json({ error: 'Account password error. Please contact support.' });
         }
 
         // Verify password
         const isPasswordValid = await bcrypt.compare(password, membership.user.password);
         if (!isPasswordValid) {
-            return res.status(401).json({ error: 'Invalid Membership ID or password' });
+            return res.status(401).json({ error: 'Invalid password' });
         }
 
         // Generate JWT
@@ -181,6 +201,82 @@ export const memberLogin = async (req: Request, res: Response) => {
     } catch (error) {
         console.error('Member login error:', error);
         res.status(500).json({ error: 'Login failed' });
+    }
+};
+
+// Set Password - For first-time member login
+export const setMemberPassword = async (req: Request, res: Response) => {
+    try {
+        const { membershipId, email, password, confirmPassword } = req.body;
+
+        // Validation
+        if (!membershipId || !email || !password || !confirmPassword) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        if (password !== confirmPassword) {
+            return res.status(400).json({ error: 'Passwords do not match' });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ error: 'Password must be at least 6 characters' });
+        }
+
+        // Find membership and user
+        const membership = await prisma.membership.findUnique({
+            where: { membershipId },
+            include: { user: true }
+        });
+
+        if (!membership || !membership.user) {
+            return res.status(404).json({ error: 'Membership not found' });
+        }
+
+        // Verify email matches
+        if (membership.user.email.toLowerCase() !== email.toLowerCase()) {
+            return res.status(400).json({ error: 'Email does not match membership records' });
+        }
+
+        // Check if password already set
+        if (membership.user.passwordSet) {
+            return res.status(400).json({ error: 'Password already set. Please login or use forgot password.' });
+        }
+
+        // Hash and save password
+        const hashedPassword = await bcrypt.hash(password, 12);
+
+        await prisma.user.update({
+            where: { id: membership.user.id },
+            data: {
+                password: hashedPassword,
+                passwordSet: true
+            }
+        });
+
+        // Generate JWT
+        const token = jwt.sign(
+            { userId: membership.user.id, email: membership.user.email, membershipId },
+            process.env.JWT_SECRET as string,
+            { expiresIn: (process.env.JWT_EXPIRES_IN as any) || '7d' }
+        );
+
+        res.json({
+            message: 'Password set successfully!',
+            token,
+            user: {
+                id: membership.user.id,
+                name: membership.user.name,
+                email: membership.user.email,
+                phone: membership.user.phone,
+                role: membership.user.role,
+                membershipId: membership.membershipId,
+                membershipStatus: membership.status
+            }
+        });
+
+    } catch (error) {
+        console.error('Set password error:', error);
+        res.status(500).json({ error: 'Failed to set password' });
     }
 };
 

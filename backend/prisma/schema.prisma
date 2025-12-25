@@ -12,7 +12,8 @@ model User {
   name        String
   email       String        @unique
   phone       String
-  password    String
+  password    String?       // Made nullable - for users who haven't set password yet
+  passwordSet Boolean       @default(false) // Track if password has been set
   googleId    String?       // For Google Sign-In users
   role        String        @default("USER") // USER, ADMIN, OPS, SUPPORT
   fcmToken    String?

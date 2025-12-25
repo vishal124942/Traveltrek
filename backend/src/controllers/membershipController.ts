@@ -31,19 +31,17 @@ export const enrollMembership = async (req: Request, res: Response) => {
             return res.status(400).json({ error: 'Invalid plan selected' });
         }
 
-        // Generate a temporary password if not provided (will be sent via email)
-        const userPassword = password || Math.random().toString(36).slice(-8);
-        const hashedPassword = await bcrypt.hash(userPassword, 10);
-
         // Create user and membership in a transaction
+        // Note: User is created without password - they will set it on first login
         const result = await prisma.$transaction(async (tx) => {
-            // Create user
+            // Create user without password (they will set it on first login)
             const user = await tx.user.create({
                 data: {
                     name,
                     email,
                     phone,
-                    password: hashedPassword,
+                    password: null, // No password initially
+                    passwordSet: false, // Will be set to true when user creates password
                     role: 'USER'
                 }
             });
