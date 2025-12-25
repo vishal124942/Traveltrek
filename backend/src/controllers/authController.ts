@@ -284,20 +284,28 @@ export const setMemberPassword = async (req: Request, res: Response) => {
     }
 };
 
-// Generate unique Membership ID (10-digit numeric format)
+// Generate unique Membership ID (random 10-digit numeric format)
 export const generateMembershipId = async (): Promise<string> => {
-    const year = new Date().getFullYear();
+    // Generate a random 10-digit number (1000000000 to 9999999999)
+    let membershipId: string;
+    let exists = true;
 
-    // Upsert counter for current year
-    const counter = await prisma.membershipCounter.upsert({
-        where: { year },
-        update: { counter: { increment: 1 } },
-        create: { year, counter: 1 }
-    });
+    // Keep generating until we find a unique ID
+    while (exists) {
+        // Generate random 10-digit number
+        const min = 1000000000; // 10 digits minimum
+        const max = 9999999999; // 10 digits maximum
+        membershipId = Math.floor(min + Math.random() * (max - min + 1)).toString();
 
-    // Format: 10-digit number (YYYYNNNNNN where YYYY is year and NNNNNN is sequential 6-digit number)
-    const paddedNumber = counter.counter.toString().padStart(6, '0');
-    return `${year}${paddedNumber}`;
+        // Check if already exists in database
+        const existing = await prisma.membership.findUnique({
+            where: { membershipId }
+        });
+
+        exists = !!existing;
+    }
+
+    return membershipId!;
 };
 
 // Forgot Password - Request OTP
