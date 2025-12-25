@@ -7,6 +7,46 @@ import { toast } from 'sonner';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
+const INDIAN_STATES = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal',
+    // Union Territories
+    'Andaman and Nicobar Islands',
+    'Chandigarh',
+    'Dadra and Nagar Haveli and Daman and Diu',
+    'Delhi',
+    'Jammu and Kashmir',
+    'Ladakh',
+    'Lakshadweep',
+    'Puducherry',
+];
+
 interface Plan {
     id: string;
     planType: string;
@@ -202,14 +242,17 @@ export default function JoinPage() {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-[#1A202C] mb-2">State</label>
-                                    <input
-                                        type="text"
+                                    <select
                                         value={formData.state}
                                         onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                                        placeholder="e.g., Maharashtra"
-                                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#667EEA] focus:ring-2 focus:ring-[#667EEA]/20 outline-none"
+                                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#667EEA] focus:ring-2 focus:ring-[#667EEA]/20 outline-none bg-white"
                                         required
-                                    />
+                                    >
+                                        <option value="">Select your state</option>
+                                        {INDIAN_STATES.map((state) => (
+                                            <option key={state} value={state}>{state}</option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
 
