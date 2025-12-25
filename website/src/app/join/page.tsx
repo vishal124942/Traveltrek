@@ -69,6 +69,7 @@ export default function JoinPage() {
                 throw new Error(data.error || 'Enrollment failed');
             }
 
+            toast.success('Enrollment request submitted successfully!');
             setStep('success');
         } catch (err) {
             toast.error(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
