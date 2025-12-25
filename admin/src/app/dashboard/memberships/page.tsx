@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { adminApi } from '@/lib/api';
 import { Check, X } from 'lucide-react';
@@ -25,7 +25,7 @@ interface Membership {
     state?: string;
 }
 
-export default function MembershipsPage() {
+function MembershipsContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const statusFilter = searchParams.get('status');
@@ -208,5 +208,17 @@ export default function MembershipsPage() {
                 </div>
             )}
         </div>
+    );
+}
+
+export default function MembershipsPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex justify-center py-20">
+                <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        }>
+            <MembershipsContent />
+        </Suspense>
     );
 }
