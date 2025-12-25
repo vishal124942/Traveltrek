@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+    --background: #05050F;
+    --surface: #0A0A1B;
+    --primary: #4F46E5;
+    --secondary: #0EA5E9;
+    --accent: #6366F1;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    background: var(--background);
+    color: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Utility Classes */
+.gradient-primary {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.bg-surface {
+    background-color: var(--surface);
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.border-primary {
+    border-color: var(--primary);
+}
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.shadow-primary {
+    box-shadow: 0 10px 40px -10px rgba(79, 70, 229, 0.3);
+}
