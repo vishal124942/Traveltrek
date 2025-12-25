@@ -40,8 +40,8 @@ export default function DashboardPage() {
                     api.getMembership(),
                 ]);
 
-                if (profileRes.success && profileRes.data) {
-                    setUser(profileRes.data as User);
+                if (profileRes.success && profileRes.data?.user) {
+                    setUser(profileRes.data.user as User);
                 } else {
                     router.push('/login');
                     return;
