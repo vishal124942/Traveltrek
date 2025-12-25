@@ -92,7 +92,11 @@ export const login = async (req: Request, res: Response) => {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
 
-        // Verify password
+        // Verify password (check if password exists first - for users who haven't set password)
+        if (!user.password) {
+            return res.status(401).json({ error: 'Invalid email or password' });
+        }
+
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             return res.status(401).json({ error: 'Invalid email or password' });
