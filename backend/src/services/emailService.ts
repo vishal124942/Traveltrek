@@ -79,3 +79,40 @@ export const sendWelcomeEmail = async (email: string, name: string) => {
     return false;
   }
 };
+export const sendOtpEmail = async (email: string, name: string, otp: string, purpose: string) => {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'TravelTrek <onboarding@resend.dev>',
+      to: [email],
+      subject: `Your TravelTrek OTP for ${purpose}`,
+      html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
+                    <h1 style="color: #667EEA; text-align: center;">TravelTrek Verification</h1>
+                    <p>Hi ${name},</p>
+                    <p>You requested an OTP for <strong>${purpose}</strong>. Please use the following code to verify your identity:</p>
+                    
+                    <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0;">
+                        <p style="margin: 0; color: #718096; font-size: 14px;">Verification Code</p>
+                        <p style="margin: 10px 0 0 0; color: #1a202c; font-size: 32px; font-weight: bold; letter-spacing: 5px;">${otp}</p>
+                    </div>
+                    
+                    <p>This code will expire in 10 minutes. If you did not request this code, please ignore this email.</p>
+                    
+                    <p style="margin-top: 40px; font-size: 12px; color: #a0aec0; text-align: center;">
+                        TravelTrek Support Team
+                    </p>
+                </div>
+            `,
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Email service error:', error);
+    return false;
+  }
+};

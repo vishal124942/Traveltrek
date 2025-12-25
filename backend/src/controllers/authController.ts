@@ -43,8 +43,8 @@ export const register = async (req: Request, res: Response) => {
         // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
-            process.env.JWT_SECRET!,
-            { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+            process.env.JWT_SECRET as string,
+            { expiresIn: (process.env.JWT_EXPIRES_IN as any) || '7d' }
         );
 
         // Trigger automated onboarding (async - don't wait)
@@ -101,8 +101,8 @@ export const login = async (req: Request, res: Response) => {
         // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
-            process.env.JWT_SECRET!,
-            { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+            process.env.JWT_SECRET as string,
+            { expiresIn: (process.env.JWT_EXPIRES_IN as any) || '7d' }
         );
 
         res.json({
@@ -160,8 +160,8 @@ export const memberLogin = async (req: Request, res: Response) => {
         // Generate JWT
         const token = jwt.sign(
             { userId: membership.user.id, email: membership.user.email, membershipId },
-            process.env.JWT_SECRET!,
-            { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+            process.env.JWT_SECRET as string,
+            { expiresIn: (process.env.JWT_EXPIRES_IN as any) || '7d' }
         );
 
         res.json({
@@ -321,7 +321,7 @@ export const googleAuth = async (req: Request, res: Response) => {
             });
 
             // Trigger onboarding for new users
-            triggerOnboarding(user.id, email, name || email.split('@')[0]);
+            triggerOnboarding(user).catch(console.error);
         } else if (!user.googleId) {
             // Link Google account to existing user
             user = await prisma.user.update({
@@ -334,8 +334,8 @@ export const googleAuth = async (req: Request, res: Response) => {
         // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
-            process.env.JWT_SECRET!,
-            { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+            process.env.JWT_SECRET as string,
+            { expiresIn: (process.env.JWT_EXPIRES_IN as any) || '7d' }
         );
 
         res.json({
