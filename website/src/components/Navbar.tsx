@@ -13,11 +13,42 @@ export default function Navbar() {
             setIsScrolled(window.scrollY > 10);
         };
 
-        const token = localStorage.getItem('auth_token');
-        setIsLoggedIn(!!token);
+        // Check auth token
+        const checkAuth = () => {
+            const token = localStorage.getItem('auth_token');
+            setIsLoggedIn(!!token);
+        };
+
+        // Initial check
+        checkAuth();
+
+        // Listen for storage changes (logout from another tab or same tab)
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === 'auth_token') {
+                checkAuth();
+            }
+        };
+
+        // Also check on page visibility change (when user comes back to tab)
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                checkAuth();
+            }
+        };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('storage', handleStorageChange);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        // Check periodically for same-tab localStorage changes (Safari workaround)
+        const interval = setInterval(checkAuth, 1000);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('storage', handleStorageChange);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            clearInterval(interval);
+        };
     }, []);
 
     // Prevent body scroll when mobile menu is open
