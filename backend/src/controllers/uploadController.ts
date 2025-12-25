@@ -5,14 +5,14 @@ import fs from 'fs';
 
 // Configure storage
 const storage = multer.diskStorage({
-    destination: (_req, _file, cb) => {
+    destination: (_req: any, _file: any, cb: any) => {
         const uploadDir = 'uploads/';
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
         cb(null, uploadDir);
     },
-    filename: (_req, file, cb) => {
+    filename: (_req: any, file: any, cb: any) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         cb(null, uniqueSuffix + path.extname(file.originalname));
     }
