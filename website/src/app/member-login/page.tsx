@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
@@ -34,9 +35,12 @@ export default function MemberLoginPage() {
 
             // Store token and redirect
             localStorage.setItem('auth_token', data.token);
+            toast.success('Login successful! Redirecting...');
             router.push('/dashboard');
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+            const message = err instanceof Error ? err.message : 'Login failed. Please try again.';
+            setError(message);
+            toast.error(message);
         } finally {
             setLoading(false);
         }

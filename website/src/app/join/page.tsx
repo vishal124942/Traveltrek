@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
+import { toast } from 'sonner';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
@@ -70,7 +71,7 @@ export default function JoinPage() {
 
             setStep('success');
         } catch (err) {
-            alert(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+            toast.error(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
         } finally {
             setLoading(false);
         }

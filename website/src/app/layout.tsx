@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -23,6 +24,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} font-sans antialiased`}>
+        <Toaster
+          position="top-center"
+          richColors
+          closeButton
+          toastOptions={{
+            duration: 4000,
+            style: {
+              fontFamily: 'var(--font-outfit)',
+            },
+          }}
+        />
         <Navbar />
         <main>{children}</main>
         <Footer />
