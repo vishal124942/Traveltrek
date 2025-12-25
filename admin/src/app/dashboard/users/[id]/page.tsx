@@ -160,9 +160,24 @@ export default function UserDetailPage() {
                                 </div>
                             </div>
 
+                            <div className="grid grid-cols-3 gap-4 mb-6">
+                                <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                                    <p className="text-sm text-white/40 mb-1">Plan Days</p>
+                                    <p className="text-xl font-bold text-white">{user.membership.totalDays}</p>
+                                </div>
+                                <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                                    <p className="text-sm text-white/40 mb-1">Used Days</p>
+                                    <p className="text-xl font-bold text-white">{user.membership.usedDays}</p>
+                                </div>
+                                <div className="p-4 bg-white/5 rounded-xl border border-white/5">
+                                    <p className="text-sm text-white/40 mb-1">Available Days</p>
+                                    <p className="text-xl font-bold text-emerald-400">{user.membership.totalDays + (user.membership.customDaysAdded || 0) - user.membership.usedDays}</p>
+                                </div>
+                            </div>
+
                             <div className="space-y-4">
                                 <div>
-                                    <label className="text-sm text-white/60 block mb-2">Custom Days Added</label>
+                                    <label className="text-sm text-white/60 block mb-2">Additional Days (on top of plan)</label>
                                     <div className="flex items-center gap-4">
                                         <input
                                             type="number"
@@ -171,7 +186,7 @@ export default function UserDetailPage() {
                                             className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white w-24 focus:outline-none focus:border-primary"
                                         />
                                         <span className="text-white/40 text-sm">
-                                            Total: {user.membership.totalDays + customDays - (user.membership.customDaysAdded || 0)} days
+                                            Total Available: {user.membership.totalDays + customDays} days
                                         </span>
                                     </div>
                                 </div>
@@ -184,8 +199,8 @@ export default function UserDetailPage() {
                                                 key={dest.id}
                                                 onClick={() => toggleDestination(dest.id)}
                                                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors text-left ${selectedDestinations.includes(dest.id)
-                                                        ? 'bg-primary/20 text-primary border border-primary/30'
-                                                        : 'bg-white/5 text-white/60 border border-white/5 hover:bg-white/10'
+                                                    ? 'bg-primary/20 text-primary border border-primary/30'
+                                                    : 'bg-white/5 text-white/60 border border-white/5 hover:bg-white/10'
                                                     }`}
                                             >
                                                 <div className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 ${selectedDestinations.includes(dest.id) ? 'border-primary bg-primary' : 'border-white/30'
