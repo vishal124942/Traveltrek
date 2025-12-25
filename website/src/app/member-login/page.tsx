@@ -218,7 +218,7 @@ export default function MemberLoginPage() {
                                         type="text"
                                         value={membershipId}
                                         onChange={(e) => setMembershipId(e.target.value.toUpperCase())}
-                                        placeholder="TT-2024-XXXXX"
+                                        placeholder="Enter your 10-digit Membership ID"
                                         className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-gray-200 focus:border-[#667EEA] focus:ring-2 focus:ring-[#667EEA]/20 outline-none transition-all"
                                         required
                                     />

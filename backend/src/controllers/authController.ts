@@ -280,7 +280,7 @@ export const setMemberPassword = async (req: Request, res: Response) => {
     }
 };
 
-// Generate unique Membership ID
+// Generate unique Membership ID (10-digit numeric format)
 export const generateMembershipId = async (): Promise<string> => {
     const year = new Date().getFullYear();
 
@@ -291,9 +291,9 @@ export const generateMembershipId = async (): Promise<string> => {
         create: { year, counter: 1 }
     });
 
-    // Format: TT-2024-00001
-    const paddedNumber = counter.counter.toString().padStart(5, '0');
-    return `TT-${year}-${paddedNumber}`;
+    // Format: 10-digit number (YYYYNNNNNN where YYYY is year and NNNNNN is sequential 6-digit number)
+    const paddedNumber = counter.counter.toString().padStart(6, '0');
+    return `${year}${paddedNumber}`;
 };
 
 // Forgot Password - Request OTP
