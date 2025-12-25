@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+
 export default function MemberLoginPage() {
     const router = useRouter();
     const [membershipId, setMembershipId] = useState('');
@@ -18,7 +20,7 @@ export default function MemberLoginPage() {
 
         try {
             // TODO: Replace with actual member login API
-            const response = await fetch('http://localhost:3000/api/auth/member-login', {
+            const response = await fetch(`${API_BASE_URL}/auth/member-login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ membershipId, password }),

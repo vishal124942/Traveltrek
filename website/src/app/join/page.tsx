@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+
 interface Plan {
     id: string;
     planType: string;
@@ -29,7 +31,7 @@ export default function JoinPage() {
     useEffect(() => {
         async function fetchPlans() {
             try {
-                const response = await fetch('http://localhost:3000/api/membership/plans');
+                const response = await fetch(`${API_BASE_URL}/membership/plans`);
                 const data = await response.json();
                 if (data.plans) {
                     setPlans(data.plans);
@@ -51,7 +53,7 @@ export default function JoinPage() {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3000/api/membership/enroll', {
+            const response = await fetch(`${API_BASE_URL}/membership/enroll`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

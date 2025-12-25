@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+
 interface Message {
     id: string;
     content: string;
@@ -77,7 +79,7 @@ export default function ChatPage() {
 
         try {
             const token = api.getToken();
-            const response = await fetch('http://localhost:3000/api/chat', {
+            const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
