@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
     LayoutGrid,
@@ -12,8 +13,7 @@ import {
     LogOut,
     Menu,
     X,
-    PieChart,
-    Sparkles
+    PieChart
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/lib/auth';
@@ -52,9 +52,13 @@ export default function Sidebar() {
                 )}
             >
                 <div className="mb-10 flex items-center gap-3 px-2">
-                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                        <Sparkles className="text-white" size={20} />
-                    </div>
+                    <Image
+                        src="/logo.jpeg"
+                        alt="TravelTrek"
+                        width={40}
+                        height={40}
+                        className="rounded-xl"
+                    />
                     <div>
                         <h1 className="text-xl font-bold text-white">TravelTrek</h1>
                         <p className="text-xs text-white/40 font-medium">ADMIN PANEL</p>

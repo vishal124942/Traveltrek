@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 export default function Navbar() {
@@ -80,9 +81,13 @@ export default function Navbar() {
                 <div className="max-w-6xl mx-auto px-5 flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="w-9 h-9 rounded-xl gradient-primary flex items-center justify-center">
-                            <span className="text-white text-lg">✈️</span>
-                        </div>
+                        <Image
+                            src="/logo.jpeg"
+                            alt="TravelTrek"
+                            width={36}
+                            height={36}
+                            className="rounded-xl"
+                        />
                         <span className="font-bold text-lg text-[#1A202C]">
                             TravelTrek
                         </span>
