@@ -96,7 +96,7 @@ export default function AboutPage() {
                 <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left">
                     <div>
                         <h4 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">Call Us</h4>
-                        <p className="text-2xl font-bold">1800 121 2490</p>
+                        <p className="text-2xl font-bold">1800 XXX XXXX</p>
                         <p className="text-gray-400 mt-1">Toll Free Number</p>
                     </div>
                     <div>

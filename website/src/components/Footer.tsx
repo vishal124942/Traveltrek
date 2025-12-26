@@ -11,7 +11,7 @@ export default function Footer() {
                         <p className="text-[#718096] text-sm leading-relaxed mb-6">
                             Ease of booking. No restriction of seasons. One stop solutions for all your holidaying needs. Advise from our holiday experts. Lavish breakfast buffet.
                         </p>
-                        <p className="font-bold text-lg">Our Toll Free No: 1800 121 2490</p>
+                        <p className="font-bold text-lg">Our Toll Free No: 1800 XXX XXXX</p>
                     </div>
 
                     {/* Sitemap */}
